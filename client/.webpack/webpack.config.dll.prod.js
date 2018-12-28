@@ -1,5 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const path = require('path');
+
 const webpack = require('webpack');
 
 const join = path.join.bind(null, __dirname, '..');
@@ -7,7 +8,7 @@ const join = path.join.bind(null, __dirname, '..');
 module.exports = {
   context: join('src'),
   devtool: false,
-  entry: ['../src/vendor.js'],
+  entry: ['@babel/polyfill', '../src/vendor.js'],
   mode: 'production',
   module: {
     rules: [

@@ -1,31 +1,24 @@
-import {
-  UI_TOGGLE_LEFT_NAVIGATION_CLOSED,
-  UI_TOGGLE_LEFT_NAVIGATION_OPEN,
-  uiToggleLeftNavigationClosed,
-  uiToggleLeftNavigationOpen,
-} from './actions';
+import { uiDirectionToggle, uiLeftNavigationToggle } from './actions';
+
 import reducer, { defaultState } from './index';
 
-test('Returns the default state when no action is provided', () => {
-  const expected = defaultState;
-
-  const actual = reducer();
-
-  expect(actual).toEqual(expected);
+test('Returns the state by default', () => {
+  expect(reducer()).toEqual(defaultState);
 });
 
-test(`Closes the left navigation with the ${UI_TOGGLE_LEFT_NAVIGATION_CLOSED} action`, () => {
-  const expected = { leftNavigationOpen: false };
-
-  const actual = reducer({}, uiToggleLeftNavigationClosed());
-
-  expect(actual).toEqual(expected);
+test('Toggles the direction to \'rtl\'', () => {
+  expect(reducer({ direction: 'ltr' }, uiDirectionToggle())).toEqual({ direction: 'rtl' });
 });
 
-test(`Opens the left navigation with the ${UI_TOGGLE_LEFT_NAVIGATION_OPEN} action`, () => {
-  const expected = { leftNavigationOpen: true };
+test('Toggles the direction to \'ltr\'', () => {
+  expect(reducer({ direction: 'rtl' }, uiDirectionToggle())).toEqual({ direction: 'ltr' });
+});
 
-  const actual = reducer({}, uiToggleLeftNavigationOpen());
+test('Toggles the left navigation', () => {
+  const TOGGLE = 'TOGGLE';
+  const expected = { leftNavigationOpen: TOGGLE };
+
+  const actual = reducer({}, uiLeftNavigationToggle(TOGGLE));
 
   expect(actual).toEqual(expected);
 });

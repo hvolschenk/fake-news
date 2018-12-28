@@ -1,9 +1,11 @@
 /* eslint-disable import/no-extraneous-dependencies */
+const path = require('path');
+
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CspHtmlWebpackPlugin = require('csp-html-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
+const ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin');
 const webpack = require('webpack');
 
 const join = path.join.bind(null, __dirname, '..');
@@ -40,20 +42,27 @@ module.exports = {
         use: [
           { loader: 'style-loader' },
           { loader: 'css-loader' },
+          { loader: 'postcss-loader' },
           { loader: 'sass-loader', options: { includePaths: ['node_modules', 'src'] } },
         ],
       },
-      {
-        test: /\.scss$/,
-        include: [/node_modules\/@material/],
-        use: [
-          { loader: 'style-loader' },
-          { loader: 'css-loader' },
-          { loader: 'postcss-loader' },
-          { loader: 'sass-loader', options: { includePaths: ['node_modules'] } },
-        ],
-      },
     ],
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        common: {
+          chunks: 'async',
+          enforce: true,
+          minChunks: 2,
+          name: 'common',
+          priority: 10,
+          reuseExistingChunk: true,
+        },
+        default: false,
+        vendors: false,
+      },
+    },
   },
   output: {
     path: join('dist'),
@@ -64,20 +73,25 @@ module.exports = {
     new CopyWebpackPlugin([
       { from: 'assets', to: 'assets' },
       { from: 'google-analytics.js', to: 'google-analytics.js' },
-      { from: 'site.manifest', to: 'site.manifest' },
+      { from: 'manifest.webmanifest', to: 'manifest.webmanifest' },
     ]),
     new HtmlWebpackPlugin({ template: 'index.html' }),
     new CspHtmlWebpackPlugin({
       'base-uri': '\'self\'',
-      'connect-src': ['\'self\'', 'wss://localhost:12000', 'wss://0.0.0.0:12000'],
+      'connect-src': ['\'self\'', 'wss://localhost:4000', 'wss://0.0.0.0:4000', 'https://fonts.googleapis.com', 'https://fonts.gstatic.com'],
       'default-src': '\'none\'',
-      'font-src': ['\'self\'', 'https://fonts.gstatic.com'],
+      'font-src': ['\'self\'', 'https://fonts.googleapis.com', 'https://fonts.gstatic.com'],
       'form-action': '\'none\'',
       'frame-src': ['https://www.google.com'],
-      'img-src': ['\'self\'', 'data:', 'https://www.google-analytics.com', 'https://lorempixel.com'],
+      'img-src': ['\'self\'', 'data:'],
+      'manifest-src': ['\'self\''],
       'object-src': '\'none\'',
       'script-src': ['\'self\'', 'https://www.google.com', 'https://www.gstatic.com', 'https://www.google-analytics.com', 'https://www.googletagmanager.com/'],
-      'style-src': ['\'self\'', '\'unsafe-inline\'', 'https://fonts.googleapis.com'],
+      'style-src': ['\'self\'', '\'unsafe-inline\'', 'https://fonts.googleapis.com', 'https://fonts.gstatic.com'],
+    }),
+    new ServiceWorkerWebpackPlugin({
+      entry: join('src', 'service-worker.js'),
+      filename: 'service-worker.js',
     }),
     new webpack.DllReferencePlugin({
       context: join('src'),
@@ -88,7 +102,6 @@ module.exports = {
       filepath: join('dist', 'vendor.js'),
       includeSourcemap: false,
     }),
-    new webpack.NamedModulesPlugin(),
   ],
   resolve: {
     extensions: ['.js', '.jsx'],

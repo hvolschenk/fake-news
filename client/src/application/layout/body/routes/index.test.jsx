@@ -6,7 +6,7 @@ import { Route } from 'react-router-dom';
 import { root } from 'application/urls';
 import Home from 'pages/home/async';
 
-import Routes from './routes';
+import Routes from './index';
 
 let routes;
 let wrapper;

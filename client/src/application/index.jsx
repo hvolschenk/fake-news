@@ -5,19 +5,22 @@ import { BrowserRouter } from 'react-router-dom';
 
 import store from 'reducers/store';
 
+import ConnectionCheck from './connection-check';
 import Analytics from './google-analytics';
 import Routes from './routes';
 import Scroll from './scroll-restoration';
 
 const Application = () => (
   <Provider store={store}>
-    <BrowserRouter>
-      <Scroll>
+    <ConnectionCheck>
+      <BrowserRouter>
         <Analytics>
-          <Routes />
+          <Scroll>
+            <Routes />
+          </Scroll>
         </Analytics>
-      </Scroll>
-    </BrowserRouter>
+      </BrowserRouter>
+    </ConnectionCheck>
   </Provider>
 );
 

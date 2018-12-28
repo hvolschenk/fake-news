@@ -1,4 +1,2 @@
 // eslint-disable-next-line import/prefer-default-export
-export const uiLeftNavigationOpen = state => ({
-  uiLeftNavigationOpen: state.app.ui.leftNavigationOpen,
-});
+export const ui = state => ({ ui: state.app.ui });

@@ -1,4 +1,3 @@
-import '@babel/polyfill';
 import 'classnames';
 import 'history';
 import 'lifecycler';
@@ -6,6 +5,7 @@ import 'payload-action-creator';
 import 'prop-types';
 import 'react';
 import 'react-dom';
+import 'react-hot-loader';
 import 'react-loadable';
 import 'react-redux';
 import 'react-router-dom';

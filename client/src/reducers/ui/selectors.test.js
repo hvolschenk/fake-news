@@ -1,12 +1,10 @@
-import { uiLeftNavigationOpen } from './selectors';
+import { ui } from './selectors';
 
-test('\'uiLeftNavigationOpen()\' returns whether the left navigation is open', () => {
-  const LEFT_NAVIGATION_OPEN = 'LEFT_NAVIGATION_OPEN';
-  const expected = { uiLeftNavigationOpen: LEFT_NAVIGATION_OPEN };
+test('Fetches the ui information from state', () => {
+  const UI = 'UI';
+  const expected = { ui: UI };
 
-  const actual = uiLeftNavigationOpen({
-    app: { ui: { leftNavigationOpen: LEFT_NAVIGATION_OPEN } },
-  });
+  const actual = ui({ app: { ui: UI } });
 
   expect(actual).toEqual(expected);
 });

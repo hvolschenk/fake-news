@@ -1,4 +1,4 @@
-import join from './urls';
+import join from './index';
 
 test('\'join()\' strings together URL parts with a separator', () => {
   const A = 'A';
