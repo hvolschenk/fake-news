@@ -1,0 +1,11 @@
+<?php
+  namespace Rwdg\Config;
+  class Connection {
+    const HOST = '{host}';
+    const USERNAME = '{username}';
+    const PASSWORD = '{password}';
+    const DATABASE = '{database}';
+    const TABLE_PREFIX = '{tablePrefix}';
+    const DRIVER = 'MySQL';
+    const API = 'Pdo';
+  }

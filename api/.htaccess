@@ -1,0 +1,8 @@
+# URL Format
+# [!format/]module[/action[/id]]
+# All lowercase
+# letters (a-z), numbers (0-9) and dashes (-)
+
+RewriteEngine On
+
+RewriteRule ^([a-zA-Z0-9\-]+)/?([0-9]+)?/?([a-z][a-zA-Z0-9\-]+)?$    src/Api/index.php?type=$1&id=$2&action=$3 [L,QSA]

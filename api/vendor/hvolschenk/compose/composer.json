@@ -1,0 +1,22 @@
+{
+  "name": "hvolschenk/compose",
+  "description": "PHP function composer.",
+  "require": {
+    "php": "^7.0"
+  },
+  "keywords": ["cli", "php", "compose", "composer", "functions"],
+  "license": "MIT",
+  "homepage": "https://github.com/hvolschenk/compose",
+  "authors": [
+    {
+      "name": "Hendrik Volschenk",
+      "email": "righteous.trespasser@gmail.com",
+      "homepage": "http://hvolschenk.co.za"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Hvolschenk\\": "src"
+    }
+  }
+}

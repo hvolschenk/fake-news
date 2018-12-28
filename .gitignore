@@ -1,0 +1,9 @@
+# OS Specific files
+.DS_Store
+Thumbs.db
+
+# Editor Specific
+.vs/
+.vscode/
+.idea/
+*.sln

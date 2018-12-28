@@ -1,0 +1,48 @@
+{
+  "cacheDirectory": "<rootDir>/jest_modules",
+  "coveragePathIgnorePatterns": [
+    "/node_modules/",
+    "<rootDir>/.jest",
+    "<rootDir>/src/i18n",
+    "<rootDir>/src/pages/playground",
+    "<rootDir>/src/pages/settings",
+    "<rootDir>/src/pages/status",
+    "<rootDir>/src/version.js"
+  ],
+  "coverageThreshold": {
+    "global": {
+      "branches": 90,
+      "functions": 90,
+      "lines": 90,
+      "statements": 90
+    }
+  },
+  "moduleDirectories": [
+    "node_modules",
+    "src"
+  ],
+  "moduleFileExtensions": [
+    "js",
+    "json",
+    "jsx"
+  ],
+  "moduleNameMapper": {
+    "\\.s?css$": "<rootDir>/.jest/style-mock.js"
+  },
+  "roots": [
+    "<rootDir>/src"
+  ],
+  "setupFiles": [
+    "<rootDir>/.jest/mutation-observer.js",
+    "<rootDir>/.jest/shim.js",
+    "<rootDir>/.jest/test-setup.js"
+  ],
+  "testPathIgnorePatterns": [
+    "/node_modules/",
+    "<rootDir>/.jest"
+  ],
+  "testURL": "https://0.0.0.0:12000",
+  "transformIgnorePatterns": [
+    "<rootDir>/node_modules/(?!@material)"
+  ]
+}
