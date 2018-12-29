@@ -1,0 +1,11 @@
+.progress {
+  &__progress {
+    background-color: #009;
+    height: 20px;
+  }
+
+  &__total {
+    background-color: #ddd;
+    height: 20px;
+  }
+}

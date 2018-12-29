@@ -1,3 +1,16 @@
 import React from 'react';
 
-export default () => (<p>Hello</p>);
+import Progress from './progress';
+import Question from './question';
+
+export default () => (
+  <div className="home-page">
+    <Progress progress={60} />
+    <h1 className="home-page__headline">Fake News</h1>
+    <h2 className="home-page__subheading">Real or fake?</h2>
+    <Question
+      onAnswer={answer => console.log(answer)}
+      question="Police found a hole in a man's backyard, they're looking into it"
+    />
+  </div>
+);
