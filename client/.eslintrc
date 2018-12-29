@@ -1,0 +1,25 @@
+{
+  "env": {
+    "browser": true,
+    "jest": true,
+    "node": true
+  },
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "rules": {
+    "implicit-arrow-linebreak": "off",
+    "function-paren-newline": ["error", "consistent"],
+    "jsx-a11y/anchor-is-valid": "off",
+    "lines-between-class-members": "off",
+    "object-curly-newline": ["error", { "consistent": true }],
+    "operator-linebreak": "off",
+    "react/destructuring-assignment": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/no-typos": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "webpack": { "config": ".webpack/webpack.config.js" }
+    }
+  },
+}

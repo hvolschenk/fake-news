@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+npm-debug.log
+.config/
+.node-gyp/
+.npm/
+
+# Unit testing
+coverage/
+
+# Builds
+build/
+dist/
+.webpack/webpack.profile.json
+.webpack/webpack.profile.vendor.json
+
+# Jest Cache
+jest_0/
+jest_modules/

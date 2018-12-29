@@ -1,0 +1,111 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "fe633bbe03447bddcb3ae5e5d93da4b7",
+    "content-hash": "f49443716fce9ccf77ccd7331511f879",
+    "packages": [
+        {
+            "name": "hvolschenk/cliphf",
+            "version": "v3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hvolschenk/cliphf.git",
+                "reference": "eaf692ff59fb028cbb311fca79290002c25260d4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hvolschenk/cliphf/zipball/eaf692ff59fb028cbb311fca79290002c25260d4",
+                "reference": "eaf692ff59fb028cbb311fca79290002c25260d4",
+                "shasum": ""
+            },
+            "require": {
+                "hvolschenk/compose": "^1.1.0",
+                "php": "^7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Hvolschenk\\Cliphf\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Hendrik Volschenk",
+                    "email": "righteous.trespasser@gmail.com",
+                    "homepage": "http://hvolschenk.co.za"
+                }
+            ],
+            "description": "PHP Cli Formatting library.",
+            "homepage": "https://github.com/hvolschenk/cliphf",
+            "keywords": [
+                "cli",
+                "formatter",
+                "formatting",
+                "php"
+            ],
+            "time": "2016-12-06 20:49:30"
+        },
+        {
+            "name": "hvolschenk/compose",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hvolschenk/compose.git",
+                "reference": "eb8f8963c4b9250558db83e3b1550629fc29a69e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hvolschenk/compose/zipball/eb8f8963c4b9250558db83e3b1550629fc29a69e",
+                "reference": "eb8f8963c4b9250558db83e3b1550629fc29a69e",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Hvolschenk\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Hendrik Volschenk",
+                    "email": "righteous.trespasser@gmail.com",
+                    "homepage": "http://hvolschenk.co.za"
+                }
+            ],
+            "description": "PHP function composer.",
+            "homepage": "https://github.com/hvolschenk/compose",
+            "keywords": [
+                "cli",
+                "compose",
+                "composer",
+                "functions",
+                "php"
+            ],
+            "time": "2016-12-07 21:12:23"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": "^7.0"
+    },
+    "platform-dev": []
+}

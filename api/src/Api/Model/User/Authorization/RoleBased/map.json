@@ -1,0 +1,68 @@
+{
+  "Application": {
+    "Create": [[0, 4, 5]],
+    "Delete": [[4, 5]],
+    "Read": [[4, 5]],
+    "Update": [[4, 5]]
+  },
+  "Article": {
+    "ByRole": [[0, 1, 2, 3, 4, 5]],
+    "Create": [[4, 5]],
+    "Delete": [[4, 5]],
+    "Read": [[0, 1, 2, 3, 4, 5]],
+    "Update": [[4, 5]]
+  },
+  "Event": {
+    "Create": [[4, 5]],
+    "Delete": [[4, 5]],
+    "Read": [[0, 1, 2, 3, 4, 5]],
+    "Update": [[4, 5]]
+  },
+  "File": {
+    "Create": [[4, 5]],
+    "Delete": [[4, 5]],
+    "Read": [[1, 2, 3, 4, 5]],
+    "Update": [[4, 5]]
+  },
+  "Gallery": {
+    "Create": [[4, 5]],
+    "Delete": [[4, 5]],
+    "Read": [[0, 1, 2, 3, 4, 5]],
+    "Update": [[4, 5]]
+  },
+  "Image": {
+    "Create": [[4, 5]],
+    "Delete": [[4, 5]],
+    "Read": [[1, 2, 3, 4, 5]],
+    "Update": [[4, 5]]
+  },
+  "Locale": {
+    "Create": [[4, 5]],
+    "Delete": [[4, 5]],
+    "Read": [[0, 1, 2, 3, 4, 5]],
+    "Update": [[4, 5]]
+  },
+  "Message": {
+    "Create": [[0, 1, 2, 3, 4, 5]],
+    "Delete": [[4, 5]],
+    "Read": [[4, 5]],
+    "Update": [[4, 5]]
+  },
+  "Setting": {
+    "Create": [[4, 5]],
+    "Delete": [[4, 5]],
+    "Read": [[4, 5]],
+    "Update": [[4, 5]]
+  },
+  "User": {
+    "Contact": [[1, 2, 3, 4, 5]],
+    "Create": [[4, 5]],
+    "Current": [[0, 1, 2, 3, 4, 5]],
+    "Delete": [[3, 4, 5]],
+    "ForgotPassword": [[0]],
+    "Login": [[0]],
+    "Logout": [[1, 2, 3, 4, 5]],
+    "Read": [[1, 2, 3, 4, 5]],
+    "Update": [[1, 2, 3, 4, 5]]
+  }
+}

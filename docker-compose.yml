@@ -1,0 +1,41 @@
+version: "3.0"
+
+networks:
+  fake-news-network:
+    driver: bridge
+
+services:
+  api:
+    build: "./api"
+    depends_on:
+      - database
+    hostname: fakenewsapi
+    networks:
+      - fake-news-network
+    ports:
+      - "4001:80"
+    volumes:
+      - ./api:/var/www/html/:delegated
+  client:
+    build: "./client"
+    command: ["npm", "start"]
+    depends_on:
+      - api
+    networks:
+      - fake-news-network
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./client:/home/node/app/:delegated
+  database:
+    build: "./database"
+    environment:
+      MYSQL_DATABASE: fakenews
+      MYSQL_ROOT_PASSWORD: h3lL0k1TTy
+    networks:
+      - fake-news-network
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./database/src:/docker-entrypoint-initdb.d:delegated
+      - ./database/config:/etc/mysql/conf.d:delegated
