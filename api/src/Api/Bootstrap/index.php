@@ -1,6 +1,7 @@
 <?php
   namespace Rwdg\Bootstrap;
 
+  session_start();
   require('Request/index.php');
   require('Response/index.php');
   require('Connection/index.php');
