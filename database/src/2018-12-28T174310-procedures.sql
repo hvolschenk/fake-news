@@ -1,4 +1,31 @@
 DELIMITER //
+CREATE PROCEDURE action_create(
+  IN aId INT UNSIGNED,
+  IN aAction ENUM('QUESTION', 'ANSWER'),
+  IN aResult VARCHAR(255)
+)
+BEGIN
+  INSERT INTO action(id, action, result) VALUES(aId, aAction, aResult);
+END//
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE action_fromSessionId(IN aSessionId VARCHAR(255))
+BEGIN
+  SELECT
+    model.id, model.type, model.status, model.dateCreated, model.dateModified,action.action,
+    action.result, user.sessionId, question.id AS questionId
+  FROM action
+  JOIN model ON action.id = model.id
+  JOIN modelLink AS userModelLink ON model.id = userModelLink.id
+  JOIN user ON userModelLink.link = user.id
+  JOIN modelLink AS questionModelLink ON model.id = questionModelLink.id
+  JOIN question ON questionModelLink.link = question.id
+  WHERE user.sessionId = aSessionId;
+END//
+DELIMITER ;
+
+DELIMITER //
 CREATE PROCEDURE model_create(IN aType VARCHAR(64), IN aCreatedBy INT UNSIGNED)
 BEGIN INSERT INTO model(type, createdBy) VALUES(aType, aCreatedBy); SELECT LAST_INSERT_ID(); END//
 DELIMITER ;
