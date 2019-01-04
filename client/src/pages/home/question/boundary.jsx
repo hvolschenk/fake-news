@@ -25,14 +25,16 @@ const Boundary = ({ componentDidMount, question }) => (
 Boundary.propTypes = {
   componentDidMount: PropTypes.func.isRequired,
   question: PropTypes.shape({
-    question: PropTypes.string,
+    payload: PropTypes.shape({
+      question: PropTypes.string,
+    }),
     status: preloadPropTypes,
   }),
 };
 
 Boundary.defaultProps = {
   question: {
-    question: '',
+    payload: {},
     status: preloadDefaultProp,
   },
 };
