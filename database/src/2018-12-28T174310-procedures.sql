@@ -89,6 +89,30 @@ END//
 DELIMITER ;
 
 DELIMITER //
+CREATE PROCEDURE question_random(IN aSessionId VARCHAR(255))
+BEGIN
+  SELECT model.id, model.type, model.status, model.dateCreated, model.dateModified,
+    question.answer, question.question
+  FROM user
+  JOIN modelLink AS poolModelLink ON user.id = poolModelLink.id
+  JOIN modelLink AS questionModelLink ON poolModelLink.link = questionModelLink.id
+  JOIN question ON questionModelLink.link = question.id
+  JOIN model ON question.id = model.id
+  WHERE user.sessionId = aSessionId
+  AND model.status = 'A'
+  AND question.id NOT IN (
+    SELECT action.id
+    FROM user
+    JOIN modelLink as actionModelLink ON user.id = actionModelLink.id
+    JOIN action on actionModelLink.link = action.id
+    WHERE user.sessionId = aSessionId
+  )
+  ORDER BY RAND()
+  LIMIT 1;
+END//
+DELIMITER ;
+
+DELIMITER //
 CREATE PROCEDURE user_create(IN aId INT UNSIGNED, IN aSessionId VARCHAR(255), IN aRole TINYINT)
 BEGIN
   INSERT INTO user(id, sessionId, role) VALUES(aId, aSessionId, aRole);
