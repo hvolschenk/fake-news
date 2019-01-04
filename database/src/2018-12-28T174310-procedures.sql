@@ -106,6 +106,7 @@ BEGIN
     JOIN modelLink as actionModelLink ON user.id = actionModelLink.id
     JOIN action on actionModelLink.link = action.id
     WHERE user.sessionId = aSessionId
+    AND action.action = 'ANSWER'
   )
   ORDER BY RAND()
   LIMIT 1;
