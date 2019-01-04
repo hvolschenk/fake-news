@@ -5,7 +5,7 @@ import Question from './question';
 
 export default () => (
   <div className="home-page">
-    <Progress progress={60} />
+    <Progress />
     <h1 className="home-page__headline">Fake News</h1>
     <h2 className="home-page__subheading">Real or fake?</h2>
     <Question
