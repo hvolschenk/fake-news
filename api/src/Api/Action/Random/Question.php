@@ -1,6 +1,6 @@
 <?php
   namespace Rwdg\Api\Action\Random;
-  use Rwdg\Api\Model\Question\Question;
+  use Rwdg\Api\Model\Question\Question as QuestionModel;
   class Question extends \Rwdg\Api\Action\ActionAbstract {
 
     private $question;
@@ -18,11 +18,11 @@
       $this->getResponse()->getOutput()->outputModel($this->getQuestion());
     }
 
-    private function getQuestion(): Question {
+    private function getQuestion(): QuestionModel {
       return $this->question;
     }
 
-    private function setQuestion(Question $question) {
+    private function setQuestion(QuestionModel $question) {
       $this->question = $question;
     }
 
