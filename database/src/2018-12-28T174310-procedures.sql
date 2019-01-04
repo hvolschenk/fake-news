@@ -1,4 +1,31 @@
 DELIMITER //
+CREATE PROCEDURE action_create(
+  IN aId INT UNSIGNED,
+  IN aAction ENUM('QUESTION', 'ANSWER'),
+  IN aResult VARCHAR(255)
+)
+BEGIN
+  INSERT INTO action(id, action, result) VALUES(aId, aAction, aResult);
+END//
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE action_fromSessionId(IN aSessionId VARCHAR(255))
+BEGIN
+  SELECT
+    model.id, model.type, model.status, model.dateCreated, model.dateModified,action.action,
+    action.result, user.sessionId, question.id AS questionId
+  FROM action
+  JOIN model ON action.id = model.id
+  JOIN modelLink AS userModelLink ON model.id = userModelLink.id
+  JOIN user ON userModelLink.link = user.id
+  JOIN modelLink AS questionModelLink ON model.id = questionModelLink.id
+  JOIN question ON questionModelLink.link = question.id
+  WHERE user.sessionId = aSessionId;
+END//
+DELIMITER ;
+
+DELIMITER //
 CREATE PROCEDURE model_create(IN aType VARCHAR(64), IN aCreatedBy INT UNSIGNED)
 BEGIN INSERT INTO model(type, createdBy) VALUES(aType, aCreatedBy); SELECT LAST_INSERT_ID(); END//
 DELIMITER ;
@@ -35,5 +62,49 @@ BEGIN
   JOIN model ON modelLink.link = model.id
   WHERE modelLink.id=aId
   AND model.type=aType;
+END//
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE pool_create(
+  IN aId INT UNSIGNED,
+  IN aName VARCHAR(255),
+  IN aNumberOfQuestions SMALLINT UNSIGNED
+)
+BEGIN
+  INSERT INTO pool(id, name, numberOfQuestions) VALUES(aId, aName, aNumberOfQuestions);
+END//
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE pool_random()
+BEGIN
+  SELECT pool.id, pool.name, pool.numberOfQuestions
+  FROM pool
+  JOIN model ON pool.id = model.id
+  WHERE model.status = 'A'
+  ORDER BY RAND()
+  LIMIT 1;
+END//
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE user_create(IN aId INT UNSIGNED, IN aSessionId VARCHAR(255), IN aRole TINYINT)
+BEGIN
+  INSERT INTO user(id, sessionId, role) VALUES(aId, aSessionId, aRole);
+END//
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE user_fromSessionId(IN aSessionId VARCHAR(255))
+BEGIN
+  SELECT
+    model.id, model.type, model.status, model.dateCreated, model.dateModified, user.sessionId,
+    user.role, pool.numberOfQuestions
+  FROM user
+  JOIN model ON user.id = model.id
+  JOIN modelLink ON model.id = modelLink.id
+  JOIN pool ON modelLink.link = pool.id
+  WHERE user.sessionId = aSessionId;
 END//
 DELIMITER ;

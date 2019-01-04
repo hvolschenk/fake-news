@@ -10,12 +10,8 @@
     use \Rwdg\Api\Model\User\Authorization\AuthorizationTrait;
     use \Rwdg\Connection\ConnectionTrait;
 
-    public $name;
-    public $email;
-    public $password;
-    public $privileges;
     public $role;
-    public $token;
+    public $sessionId;
 
     public function __construct(ConnectionInterface $connection, User $user = null) {
       parent::__construct($connection, $user);
@@ -26,84 +22,42 @@
     public function create(int $id) {
       $this->set('id', $id);
       $this->getConnection()->executeStatement(
-        'CALL user_create(:id, :name, :email, :password, :role)',
+        'CALL user_create(:id, :sessionId, :role)',
         [
           'id' => $this->get('id'),
-          'name' => $this->get('name'),
-          'email' => $this->get('email'),
-          'password' => password_hash($this->get('password'), PASSWORD_BCRYPT),
-          'role' => $this->getUser()->get('role')
-        ]
-      );
-    }
-
-    public function update() {
-      $password = $this->get('password');
-      $hash = isset($password) && !empty($password) ?
-        password_hash($password, PASSWORD_BCRYPT) : null;
-      $this->getConnection()->executeStatement(
-        'CALL user_update(:id, :name, :email, :password, :role)',
-        [
-          'id' => $this->get('id'),
-          'name' => $this->get('name'),
-          'email' => $this->get('email'),
-          'password' => $hash,
+          'sessionId' => $this->get('sessionId'),
           'role' => $this->get('role')
         ]
       );
     }
 
-    public function fetchFromAuthorizationToken(string $token) {
-      if (!empty($token)) {
-        $user = $this->getConnection()->executeStatement('CALL user_loadFromLoginToken(:token)',
-          ['token' => $token]);
-        if (!empty($user)) {
-          $this->setValuesFromArray(array_merge($user[0], ['token' => $token]));
-        } else {
-          $this->setGuestUser();
-        }
+    public function fetchFromSessionId(string $sessionId) {
+      $user = $this->getConnection()->executeStatement(
+        'CALL user_fromSessionId(:sessionId)',
+        ['sessionId' => $sessionId]
+      );
+      if (!empty($user)) {
+        $this->setValuesFromArray(array_merge($user[0], ['sessionId' => $sessionId]));
       } else {
-        $this->setGuestUser();
+        $this->set('sessionId', $sessionId);
+        $this->set('role', 0);
+        $this->create($this->createId(0));
+        $this->assignToRandomPool();
+        $this->fetchFromSessionId($sessionId);
       }
     }
 
-    public function login(string $email, string $password) {
-      $user = $this->getConnection()->executeStatement('CALL user_loadFromEmailAddress(:email)',
-        ['email' => $email]);
-      if (empty($user)) {
-        $this->addValidationError('email', 'EMAIL_ADDRESS_NOT_FOUND');
-      } else {
-        if (password_verify($password, $user[0]['password'])) {
-          $this->setValuesFromArray($user[0]);
-          $this->set('token', $this->getAuthentication()->generateToken());
-        } else {
-          $this->addValidationError('password', 'ERROR_PASSWORD_INVALID');
-        }
+    private function assignToRandomPool() {
+      $pool = $this->getConnection()->executeStatement('CALL pool_random()', []);
+      if (!empty($pool)) {
+        $this->addLink($pool[0]['id']);
       }
-    }
-
-    public function loadFromEmailAddress(string $email) {
-      $user = $this->getConnection()->executeStatement('CALL user_loadFromEmailAddress(:email)',
-        ['email' => $email]);
-      if (empty($user)) {
-        $this->addValidationError('email', 'EMAIL_ADDRESS_NOT_FOUND');
-      }
-      else {
-        $this->setValuesFromArray($user[0]);
-      }
-    }
-
-    public function logout() {
-      $this->getAuthentication()->invalidateToken($this->get('token'));
-      $this->set('token', null);
-      $this->fetchFromAuthorizationToken($this->get('token') ?? '');
     }
 
     private function setGuestUser() {
       $this->setValuesFromArray([
         'id' => 0,
-        'name' => 'Guest',
-        'email' => 'guest@guest',
+        'sessionId' => 0,
         'role' => 0
       ]);
     }
