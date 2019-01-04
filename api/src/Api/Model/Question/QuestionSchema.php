@@ -19,8 +19,8 @@
         ],
       ],
       [
-        'default' => 'answer',
-        'name' => 'role',
+        'default' => '',
+        'name' => 'answer',
         'read' => true,
         'display' => true,
         'required' => true,
