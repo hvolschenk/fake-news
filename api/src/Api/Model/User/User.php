@@ -54,10 +54,6 @@
       }
     }
 
-    private function buildQuestionValues() {
-
-    }
-
     private function setGuestUser() {
       $this->setValuesFromArray([
         'id' => 0,
