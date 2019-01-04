@@ -10,5 +10,10 @@ beforeAll(() => {
 });
 
 test('Calls \'getAsync\' with the correct parameters', () => {
-  expect(mockGetAsync.mock.calls[0][0]).toEqual({ url: userCurrent() });
+  const OPTIONS = 'OPTIONS';
+  const expected = { options: OPTIONS, url: userCurrent() };
+
+  const actual = mockGetAsync.mock.calls[0][0];
+
+  expect(actual).toEqual(expected);
 });

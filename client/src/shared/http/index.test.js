@@ -31,7 +31,7 @@ describe('.deleteAsync()', () => {
 });
 
 describe('.getAsync()', () => {
-  const QUERY = 'QUERY';
+  const OPTIONS = 'OPTIONS';
   const URL = 'URL';
 
   let getAsync;
@@ -40,7 +40,7 @@ describe('.getAsync()', () => {
   beforeAll(() => {
     // eslint-disable-next-line global-require
     ({ getAsync } = require('./index'));
-    getAsync({ query: QUERY, url: URL });
+    getAsync({ options: OPTIONS, url: URL });
     [parameters] = mockGet.mock.calls;
   });
 
@@ -48,8 +48,8 @@ describe('.getAsync()', () => {
     expect(parameters[0]).toBe(URL);
   });
 
-  test('Adds the query parameters to the call', () => {
-    expect(parameters[1]).toEqual({ params: QUERY });
+  test('Adds the options parameters to the call', () => {
+    expect(parameters[1]).toEqual(OPTIONS);
   });
 });
 

@@ -45,12 +45,6 @@
         $this->assignToRandomPool();
         $this->fetchFromSessionId($sessionId);
       }
-      $this->fetchLinks(QueryStringFactory::makeQueryString([
-        'id' => $this->get('id'),
-        'links' => 'Pool|||Action',
-        'type' => 'User',
-      ]));
-      // here, get more info
     }
 
     private function assignToRandomPool() {
