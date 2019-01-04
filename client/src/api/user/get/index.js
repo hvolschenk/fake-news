@@ -2,4 +2,4 @@ import { getAsync } from 'shared/http';
 
 import { userCurrent } from '../urls';
 
-export default () => getAsync({ url: userCurrent() });
+export default options => getAsync({ options, url: userCurrent() });

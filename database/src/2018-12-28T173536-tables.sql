@@ -19,7 +19,7 @@ CREATE TABLE modelLink(
 CREATE TABLE action(
   id INT UNSIGNED NOT NULL,
   action ENUM('QUESTION', 'ANSWER'),
-  result VARCHAR(255) NULL,
+  result ENUM('CORRECT', 'INCORRECT') NULL,
   FOREIGN KEY (id) REFERENCES model(id)
 ) ENGINE=InnoDB;
 
