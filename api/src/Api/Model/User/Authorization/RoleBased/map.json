@@ -8,6 +8,7 @@
   "Question": {
     "Create": [[4, 5]],
     "Delete": [[4, 5]],
+    "Import": [[0, 4, 5]],
     "Random": [[0, 4, 5]],
     "Read": [[0, 4, 5]],
     "Update": [[4, 5]]

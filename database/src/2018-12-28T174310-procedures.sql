@@ -114,6 +114,17 @@ END//
 DELIMITER ;
 
 DELIMITER //
+CREATE PROCEDURE question_create(
+  IN aId INT UNSIGNED,
+  IN aQuestion VARCHAR(255),
+  IN aAnswer TINYINT(1)
+)
+BEGIN
+  INSERT INTO question(id, question, answer) VALUES(aId, aQuestion, aAnswer);
+END//
+DELIMITER ;
+
+DELIMITER //
 CREATE PROCEDURE user_create(IN aId INT UNSIGNED, IN aSessionId VARCHAR(255), IN aRole TINYINT)
 BEGIN
   INSERT INTO user(id, sessionId, role) VALUES(aId, aSessionId, aRole);
