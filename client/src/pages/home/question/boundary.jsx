@@ -5,7 +5,7 @@ import Preloadr, { preloadDefaultProp, preloadPropTypes } from 'react-preloadr';
 
 import Component from './component';
 
-const Boundary = ({ componentDidMount, question }) => (
+const Boundary = ({ answerQuestion, componentDidMount, question }) => (
   <Lifecycler componentDidMount={componentDidMount}>
     <Preloadr
       failed={() => <p>Failed to load your question</p>}
@@ -15,7 +15,7 @@ const Boundary = ({ componentDidMount, question }) => (
       {() => (
         <Component
           question={question.payload.question}
-          onAnswer={answer => console.log(answer)}
+          onAnswer={answer => answerQuestion(answer)}
         />
       )}
     </Preloadr>
@@ -23,6 +23,7 @@ const Boundary = ({ componentDidMount, question }) => (
 );
 
 Boundary.propTypes = {
+  answerQuestion: PropTypes.func.isRequired,
   componentDidMount: PropTypes.func.isRequired,
   question: PropTypes.shape({
     payload: PropTypes.shape({
