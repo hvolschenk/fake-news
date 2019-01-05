@@ -1,5 +1,4 @@
 import 'classnames';
-import 'history';
 import 'lifecycler';
 import 'payload-action-creator';
 import 'prop-types';
