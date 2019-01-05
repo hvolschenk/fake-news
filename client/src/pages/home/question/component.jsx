@@ -25,7 +25,7 @@ const Question = ({ onAnswer, question }) => (
 
 Question.propTypes = {
   onAnswer: PropTypes.func.isRequired,
-  question: PropTypes.string,
+  question: PropTypes.string.isRequired,
 };
 
 export default Question;
