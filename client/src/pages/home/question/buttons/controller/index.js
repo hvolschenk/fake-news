@@ -10,13 +10,14 @@ import Boundary from './boundary';
 
 const mapStateToProps = reduxSelectr(action);
 
-const mapDispatchToProps = (dispatch, { answer }) => ({
+const mapDispatchToProps = (dispatch, { answer, questionId }) => ({
   componentDidMount: () => {
     dispatch(actionRequested());
     const formData = new FormData();
     const isCorrect = answer === true;
     const result = isCorrect ? 'CORRECT' : 'INCORRECT';
     formData.append('action', 'ANSWER');
+    formData.append('questionId', questionId);
     formData.append('result', result);
     answerQuestion(formData)
       .then(() => {
