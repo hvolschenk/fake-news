@@ -57,6 +57,8 @@
         $model->clear();
         $model->set('question', $row[1]);
         $model->set('answer', strtoupper($row[2]) === 'TRUE' ? 1 : 0);
+        $model->set('numComments', $row[3]);
+        $model->set('score', $row[4]);
         $model->create($model->createId(0));
         $this->getRandomPool()->addLink($model->get('id'));
       }

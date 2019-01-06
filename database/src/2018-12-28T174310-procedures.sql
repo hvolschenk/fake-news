@@ -119,10 +119,13 @@ DELIMITER //
 CREATE PROCEDURE question_create(
   IN aId INT UNSIGNED,
   IN aQuestion VARCHAR(255),
-  IN aAnswer TINYINT(1)
+  IN aAnswer TINYINT(1),
+  IN aNumComments INT UNSIGNED,
+  IN aScore INT
 )
 BEGIN
-  INSERT INTO question(id, question, answer) VALUES(aId, aQuestion, aAnswer);
+  INSERT INTO question(id, question, answer, numComments, score)
+  VALUES(aId, aQuestion, aAnswer, aNumComments, aScore);
 END//
 DELIMITER ;
 

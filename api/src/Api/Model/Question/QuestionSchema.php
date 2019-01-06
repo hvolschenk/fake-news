@@ -31,6 +31,32 @@
         'type' => 'integer',
         'validation' => []
       ],
+      [
+        'default' => '',
+        'name' => 'numComments',
+        'read' => true,
+        'display' => true,
+        'required' => false,
+        'search' => false,
+        'sort' => false,
+        'create' => true,
+        'update' => true,
+        'type' => 'integer',
+        'validation' => []
+      ],
+      [
+        'default' => '',
+        'name' => 'score',
+        'read' => true,
+        'display' => true,
+        'required' => false,
+        'search' => false,
+        'sort' => false,
+        'create' => true,
+        'update' => true,
+        'type' => 'integer',
+        'validation' => []
+      ],
     ];
     const MODULES = [];
 
