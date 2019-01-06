@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import React from 'react';
 
-import Home from './index';
+import Home from './component';
 
 test('Renders the page', () => {
   const wrapper = shallow(<Home />, { disableLifecycleMethods: true });
