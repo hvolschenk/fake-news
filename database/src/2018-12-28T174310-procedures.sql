@@ -2,7 +2,7 @@ DELIMITER //
 CREATE PROCEDURE action_create(
   IN aId INT UNSIGNED,
   IN aAction ENUM('QUESTION', 'ANSWER'),
-  IN aResult VARCHAR(255)
+  IN aResult ENUM('CORRECT', 'INCORRECT')
 )
 BEGIN
   INSERT INTO action(id, action, result) VALUES(aId, aAction, aResult);
