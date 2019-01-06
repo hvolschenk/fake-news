@@ -12,7 +12,7 @@ const mapStateToProps = reduxSelectr(user);
 const mapDispatchToProps = dispatch => ({
   componentDidMount: () => {
     dispatch(userRequested());
-    getUser({ params: { links: 'Action|||Pool' } })
+    getUser({ params: { links: 'Action||limit=999|||Pool' } })
       .then(({ data }) => dispatch(userSucceeded(data)))
       .catch(() => dispatch(userFailed()));
   },

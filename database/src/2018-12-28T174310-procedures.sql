@@ -101,10 +101,12 @@ BEGIN
   WHERE user.sessionId = aSessionId
   AND model.status = 'A'
   AND question.id NOT IN (
-    SELECT action.id
+    SELECT question.id
     FROM user
-    JOIN modelLink as actionModelLink ON user.id = actionModelLink.id
-    JOIN action on actionModelLink.link = action.id
+    JOIN modelLink AS actionModelLink ON user.id = actionModelLink.id
+    JOIN action ON actionModelLink.link = action.id
+    JOIN modelLink AS questionModelLink ON action.id = questionModelLink.id
+    JOIN question ON questionModelLink.link = question.id
     WHERE user.sessionId = aSessionId
     AND action.action = 'ANSWER'
   )

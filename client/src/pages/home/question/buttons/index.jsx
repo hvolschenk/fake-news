@@ -20,7 +20,12 @@ class Buttons extends React.Component {
   }
 
   render() {
-    const { answerQuestion, hasAnswered, props: { fetchQuestion }, state: { chosenAnswer } } = this;
+    const {
+      answerQuestion,
+      hasAnswered,
+      props: { fetchQuestion, questionId },
+      state: { chosenAnswer },
+    } = this;
     return (
       <React.Fragment>
         {!hasAnswered() && (
@@ -41,7 +46,9 @@ class Buttons extends React.Component {
             </button>
           </div>
         )}
-        {hasAnswered() && <Controller answer={chosenAnswer} fetchQuestion={fetchQuestion} />}
+        {hasAnswered() && (
+          <Controller answer={chosenAnswer} fetchQuestion={fetchQuestion} questionId={questionId} />
+        )}
       </React.Fragment>
     );
   }
@@ -49,6 +56,7 @@ class Buttons extends React.Component {
 
 Buttons.propTypes = {
   fetchQuestion: PropTypes.func.isRequired,
+  questionId: PropTypes.number.isRequired,
 };
 
 export default Buttons;
