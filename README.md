@@ -58,6 +58,8 @@ $ docker-compose down
 
 ## Working with data
 
+### Importing titles
+
 To import the list of titles, start up the application, then run the following in your terminal:
 
 ```sh
@@ -67,6 +69,32 @@ $ curl http://0.0.0.0:4001/question/import
 This will import the `.csv` list from `/api/assets/file/titles.csv`. This file needs the following
 columns (in order): `id`, `question`, `answer` (`True`, `False`), `num_comments`, `score` and
 `created_utc`.
+
+### Accessing the database
+
+To access the local database you need to connect to the running Docker container.
+
+First, view all running containers:
+
+```sh
+$ docker ps
+```
+
+This will output a list of all running containers, now find the database container's `CONTAINER ID`:
+
+```
+CONTAINER ID        IMAGE                PORTS                               NAMES
+ee273fcdf2f1        fake-news_database   0.0.0.0:3306->3306/tcp, 33060/tcp   fake-news_database_1
+```
+
+Now connect to the database container's MySql instance:
+
+```sh
+$ docker exec -it ee273fcdf2f1 mysql -u root -p
+```
+
+And enter the password that is in the `/docker-compose.yml` file. The database name is also in the
+`/docker-compose.yml` file.
 
 ## Other useful docker commands
 
