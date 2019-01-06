@@ -2,18 +2,15 @@ import { userCurrent } from '../urls';
 
 const mockGetAsync = jest.fn();
 
+const OPTIONS = 'OPTIONS';
+
 beforeAll(() => {
   jest.mock('shared/http', () => ({ getAsync: mockGetAsync }));
   // eslint-disable-next-line global-require
   const getUser = require('./index').default;
-  getUser();
+  getUser(OPTIONS);
 });
 
 test('Calls \'getAsync\' with the correct parameters', () => {
-  const OPTIONS = 'OPTIONS';
-  const expected = { options: OPTIONS, url: userCurrent() };
-
-  const actual = mockGetAsync.mock.calls[0][0];
-
-  expect(actual).toEqual(expected);
+  expect(mockGetAsync.mock.calls[0][0]).toEqual({ options: OPTIONS, url: userCurrent() });
 });

@@ -5,7 +5,6 @@ import { BrowserRouter } from 'react-router-dom';
 
 import store from 'reducers/store';
 
-import ErrorBoundary from './error-boundary';
 import Routes from './routes';
 
 import Application from './index';
@@ -16,10 +15,6 @@ jest.mock('serviceworker-webpack-plugin/lib/runtime', () => ({ register: () => {
 
 beforeAll(() => {
   wrapper = shallow(<Application />);
-});
-
-test('Wraps the application in an error boundary', () => {
-  expect(wrapper.find(ErrorBoundary).exists()).toBe(true);
 });
 
 test('Wraps the application in a redux provider', () => {
