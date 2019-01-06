@@ -13,7 +13,7 @@ const mapStateToProps = reduxSelectr(action);
 const mapDispatchToProps = (dispatch, { answer }) => ({
   componentDidMount: () => {
     dispatch(actionRequested());
-    const isCorrect = answer === 'TRUE';
+    const isCorrect = answer === true;
     const formData = new FormData();
     formData.append('action', 'ANSWER');
     formData.append('result', isCorrect ? 'CORRECT' : 'INCORRECT');
