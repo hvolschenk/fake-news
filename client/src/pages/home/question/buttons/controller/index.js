@@ -13,14 +13,15 @@ const mapStateToProps = reduxSelectr(action);
 const mapDispatchToProps = (dispatch, { answer }) => ({
   componentDidMount: () => {
     dispatch(actionRequested());
-    const isCorrect = answer === true;
     const formData = new FormData();
+    const isCorrect = answer === true;
+    const result = isCorrect ? 'CORRECT' : 'INCORRECT';
     formData.append('action', 'ANSWER');
-    formData.append('result', isCorrect ? 'CORRECT' : 'INCORRECT');
+    formData.append('result', result);
     answerQuestion(formData)
       .then(() => {
         dispatch(actionSucceeded());
-        dispatch(userAddAnswer(isCorrect));
+        dispatch(userAddAnswer(result));
       })
       .catch(() => dispatch(actionFailed()));
   },
