@@ -11,7 +11,7 @@ const mapStateToProps = reduxSelectr(question);
 
 const mapDispatchToProps = dispatch => ({
   componentDidMount: () => {
-    questionRequested();
+    dispatch(questionRequested());
     getQuestion()
       .then(({ data }) => dispatch(questionSucceeded(data)))
       .catch(() => dispatch(questionFailed()));

@@ -14,8 +14,8 @@ const Boundary = ({ componentDidMount, question }) => (
     >
       {() => (
         <Component
+          fetchQuestion={componentDidMount}
           question={question.payload.question}
-          onAnswer={answer => console.log(answer)}
         />
       )}
     </Preloadr>

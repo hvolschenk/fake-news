@@ -2,7 +2,7 @@ DELIMITER //
 CREATE PROCEDURE action_create(
   IN aId INT UNSIGNED,
   IN aAction ENUM('QUESTION', 'ANSWER'),
-  IN aResult VARCHAR(255)
+  IN aResult ENUM('CORRECT', 'INCORRECT')
 )
 BEGIN
   INSERT INTO action(id, action, result) VALUES(aId, aAction, aResult);
@@ -110,6 +110,17 @@ BEGIN
   )
   ORDER BY RAND()
   LIMIT 1;
+END//
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE question_create(
+  IN aId INT UNSIGNED,
+  IN aQuestion VARCHAR(255),
+  IN aAnswer TINYINT(1)
+)
+BEGIN
+  INSERT INTO question(id, question, answer) VALUES(aId, aQuestion, aAnswer);
 END//
 DELIMITER ;
 

@@ -1,7 +1,8 @@
 import join from 'shared/urls';
 
+const ACTION = 'action';
 const RANDOM = 'random';
 const QUESTION = 'question';
 
-// eslint-disable-next-line import/prefer-default-export
+export const questionAnswer = () => join(ACTION);
 export const questionRandom = () => join(QUESTION, RANDOM);

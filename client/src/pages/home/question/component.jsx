@@ -1,30 +1,17 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const Question = ({ onAnswer, question }) => (
+import Buttons from './buttons';
+
+const Question = ({ fetchQuestion, question }) => (
   <div className="question">
     <h3 className="question__question">{question}</h3>
-    <div className="question__answers">
-      <button
-        className="question__answers__real"
-        onClick={() => onAnswer(true)}
-        type="button"
-      >
-        Real
-      </button>
-      <button
-        className="question__answers__fake"
-        onClick={() => onAnswer(false)}
-        type="button"
-      >
-        Fake
-      </button>
-    </div>
+    <Buttons fetchQuestion={fetchQuestion} />
   </div>
 );
 
 Question.propTypes = {
-  onAnswer: PropTypes.func.isRequired,
+  fetchQuestion: PropTypes.func.isRequired,
   question: PropTypes.string.isRequired,
 };
 

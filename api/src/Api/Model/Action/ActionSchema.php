@@ -29,7 +29,9 @@
         'create' => true,
         'update' => true,
         'type' => 'string',
-        'validation' => ['name' => 'maximumLength', 'parameters' => [16]]
+        'validation' => [
+          ['name' => 'maximumLength', 'parameters' => [16]],
+        ]
       ],
     ];
     const MODULES = [];

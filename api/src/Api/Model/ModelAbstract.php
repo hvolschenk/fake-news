@@ -64,6 +64,13 @@
         $this->buildCreateStatementValues());
     }
 
+    public function clear() {
+      $this->links = [];
+      foreach ($this->getSchema()->getFields() as $field) {
+        $this->set($field['name'], null);
+      }
+    }
+
     public function update() {
       $this->getConnection()->executeStatement($this->buildUpdateStatement(),
         $this->buildUpdateStatementValues());

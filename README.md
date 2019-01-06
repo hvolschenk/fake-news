@@ -56,6 +56,18 @@ To completely stop the application (and reset the database), stop the running ap
 $ docker-compose down
 ```
 
+## Working with data
+
+To import the list of titles, start up the application, then run the following in your terminal:
+
+```sh
+$ curl http://0.0.0.0:4001/question/import
+```
+
+This will import the `.csv` list from `/api/assets/file/titles.csv`. This file needs the following
+columns (in order): `id`, `question`, `answer` (`True`, `False`), `num_comments`, `score` and
+`created_utc`.
+
 ## Other useful docker commands
 
 ### Stop and remove images
