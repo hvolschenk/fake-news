@@ -5,6 +5,8 @@
   class Question extends \Rwdg\Api\Model\ModelAbstract {
 
     public $answer;
+    public $numComments;
     public $question;
+    public $score;
 
   }
