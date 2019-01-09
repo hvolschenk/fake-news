@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import Overview from './overview';
 import Progress from './progress';
 import Question from './question';
 
@@ -23,7 +24,7 @@ class Home extends React.Component {
           <img className="home-page__headline" src="/assets/fake-news.png" alt="fake news logo" />
         </div>
         <h2 className="home-page__subheading">Real or fake?</h2>
-        {this.isDone() && 'DONE'}
+        {this.isDone() && <Overview />}
         {!this.isDone() && <Question />}
       </div>
     );
