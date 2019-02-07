@@ -19,7 +19,9 @@ class Home extends React.Component {
     return (
       <div className="home-page">
         <Progress />
-        <h1 className="home-page__headline">Fake News</h1>
+        <div className="headlineBox">
+          <img className="home-page__headline" src="fake-news.png" alt="fake news logo"/>
+        </div>
         <h2 className="home-page__subheading">Real or fake?</h2>
         {this.isDone() && 'DONE'}
         {!this.isDone() && <Question />}

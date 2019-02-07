@@ -30,20 +30,27 @@ class Buttons extends React.Component {
       <React.Fragment>
         {!hasAnswered() && (
           <div className="question__answers">
-            <button
-              className="question__answer question__answer--real"
-              onClick={() => answerQuestion(true)}
-              type="button"
-            >
-              Real
-            </button>
-            <button
-              className="question__answer question__answer--fake"
-              onClick={() => answerQuestion(false)}
-              type="button"
-            >
-              Fake
-            </button>
+		<div className="left">
+			<button
+		      className="md-btn question__answer question__answer--real real"
+		      onClick={() => answerQuestion(true)}
+		      type="button"
+		    >
+		      Real
+		    </button>
+        <p class="underButton">(r/nottheonion)</p>
+		</div>
+
+		<div class="right">
+			<button
+		      className="md-btn question__answer question__answer--fake fake"
+		      onClick={() => answerQuestion(false)}
+		      type="button"
+		    >
+		      Fake
+		    </button>
+        <p class="underButton">(r/theonion)</p>
+		</div>
           </div>
         )}
         {hasAnswered() && (

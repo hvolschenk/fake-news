@@ -7,6 +7,119 @@
 
 @import 'pages/**/*.scss';
 
-body {
-  background-color: #999;
+/*@font-face {
+  font-family: twoOneFive;
+  src: url(215000E.ttf);
+}
+
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
+@font-face {
+  font-family: ssp;
+  src: url(SourceSansPro-Regular.ttf);
+}*/
+
+*{
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+}
+
+.home-page{
+  width:900px;
+  margin: auto;
+}
+
+.progress__total{
+  margin-top: 16px;
+  height: 8px;
+}
+
+.progress__progress{
+  height: 8px;
+  background-color: #0d47a1;
+}
+
+.headlineBox{
+  display: flex;
+  width:640px;
+  margin:auto;
+  margin-top:16px;
+  margin-bottom: 26px;
+}
+
+.home-page__headline{
+  width:640px;
+  height:116.5px;
+}
+
+.home-page__subheading{
+  font-size: 48px;
+  font-family: 'Source Sans Pro', sans-serif;
+  text-align: center;
+  margin: 8px 16px 16px 16px;
+}
+
+.newsLine{
+  height: 2px;
+  background-color: black;
+  width: 400px;
+  margin: auto;
+}
+
+.question__question{
+  font-size: 32px;
+  text-align: center;
+  font-style: italic;
+  margin: 16px 80px;
+}
+
+.question__answers{
+  margin: 64px 190px;
+  display: flex;
+}
+
+.left{
+  margin:auto;
+  text-align: center;
+  flex-grow: 1;
+}
+
+.right{
+  margin:auto;
+  text-align: center;
+  flex-grow: 1;
+}
+
+.md-btn {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 48px;
+  display: inline-block;
+  height: 90px;
+  min-width: 170px;
+  padding: 6px 16px;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border:0;
+  border-radius: 4px;
+  background: #b71c1c;
+  color:#fff;
+  outline:0;
+  &:focus {
+    background: darken(#b71c1c, 12%)
+  }
+}
+
+.underButton{
+  margin: 8px;
+  color: #6b6b6b;
 }
