@@ -6,7 +6,10 @@ const getCorrectAnswers = actions => actions
   .filter(({ result }) => result === 'CORRECT')
   .length;
 
-const Overview = ({ user: { payload: { action, pool: [{ numberOfQuestions }] } } }) => (
+const Overview = ({
+  createNewSession,
+  user: { payload: { action, pool: [{ numberOfQuestions }] } },
+}) => (
   <div className="overview">
     <p className="overview__score">
       You have
@@ -23,10 +26,12 @@ const Overview = ({ user: { payload: { action, pool: [{ numberOfQuestions }] } }
       &nbsp;
       correct.
     </p>
+    <button onClick={createNewSession} type="button">Restart</button>
   </div>
 );
 
 Overview.propTypes = {
+  createNewSession: PropTypes.func.isRequired,
   user: PropTypes.shape({
     payload: PropTypes.shape({
       action: PropTypes.arrayOf(PropTypes.shape({
