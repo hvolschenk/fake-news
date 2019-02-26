@@ -20,7 +20,7 @@ class Home extends React.Component {
       <div className="home-page">
         <Progress />
         <div className="headlineBox">
-          <img className="home-page__headline" src="fake-news.png" alt="fake news logo"/>
+          <img className="home-page__headline" src="/assets/fake-news.png" alt="fake news logo" />
         </div>
         <h2 className="home-page__subheading">Real or fake?</h2>
         {this.isDone() && 'DONE'}
